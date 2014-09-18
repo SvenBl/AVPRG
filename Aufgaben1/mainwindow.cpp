@@ -123,19 +123,19 @@ void MainWindow::on_pushButton_6_clicked()
     QString img =  QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("Images (*.png *.xpm *.jpg)"));
     std::string test = img.toStdString();
     Mat mat = imread(test);
-    int width = mat.cols;
-    int height = mat.rows;
+    double width = mat.cols;
+    double height = mat.rows;
     if(width >=400 || height >= 400){
         if(width >= height){
             double scaling = width / height;
-            int newHeight = (int)(400 /scaling);
+            double newHeight = (400 /scaling);
             Mat scaledImage(height,width,mat.type());
             cv::resize(mat,scaledImage,Size(400,newHeight));
             showMat(scaledImage);
         }
         else{
             double scaling = height / width;
-            int newWidth = 400 /scaling;
+            double newWidth = 400 /scaling;
             Mat scaledImage(height,width,mat.type());
             cv::resize(mat,scaledImage,Size(newWidth,400));
             showMat(scaledImage);
